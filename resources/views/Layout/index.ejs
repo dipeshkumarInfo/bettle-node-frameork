@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="<%= csrfToken %>">
+  <meta name="base_url" content="<%= base_url() %>">
+
+  <title><%- title %></title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/svg/logo.svg" type="image/x-icon">
+  
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <% if (typeof css != "undefined" && css) { %>
+    <%- css %>
+  <% } %>
+
+  <% if (typeof script != "undefined" && script) { %>
+    <%- script %>
+  <% } %>
+
+</head>
+
+<body>
+<div class="layer"></div>
+
+<div class="page-flex">
+  <!-- ! Sidebar -->
+  <% if(typeof sidenav !== 'undefined' && sidenav) { %>
+    <%- include('sidenav.ejs') %>
+  <% } %>
+
+  <div class="main-wrapper">
+    
+    <!-- ! Top nav -->
+    <% if(typeof header !== 'undefined' && header) { %>
+        <%- include('header.ejs') %>
+    <% } %>
+    <!-- ! Top nav -->
+    
+    <!-- ! Alert Message -->
+    <div class="container mt-2">
+      <% if (typeof alert_message !== 'undefined' && alert_message !='') { %>
+        <div class="transform-text alert alert-<%= alert_message[0].type %>"><%= alert_message[0].msg %></div>
+      <% } %>
+    </div>
+    <!-- ! Alert Message -->
+
+    <!-- ! Main -->
+      <div><%- body %></div>
+    <!-- ! Main -->
+
+     <!-- Alert/Waring or Message Progress Bar -->
+     <div class="progress-container">
+      <div class="bg-progress"></div>
+      <div class="inner-container">
+          <div id="responseStatus">Loading...</div>
+          <div class="percent-container">
+              <span class="percentage" id="progressPercent">0</span>%
+          </div>
+          <div class="progress-bar"></div>
+      </div>
+    </div>
+    <!-- Alert/Waring or Message Progress Bar -->
+
+
+    <!-- ! Footer -->
+      <%- include('footer.ejs') %>
+    <!-- ! Footer -->
+  </div>
+</div>
+
+<!-- library -->
+<script src="/plugins/feather.min.js"></script>
+
+<% if(typeof MainScriptShow === 'undefined') { %>
+<script src="/js/script.js"></script>
+<% } %>
+<!-- library -->
+
+</body>
+</html>

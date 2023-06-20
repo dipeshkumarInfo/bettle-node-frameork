@@ -1,0 +1,98 @@
+<style>
+    .users-table td
+    {
+        border-right: 1px solid #eee;
+        padding: 7px 7px;
+    }
+</style>
+<main class="main users">
+    <div class="container">
+      <h2 class="main-title">Roles & Permisions</h2>
+      <div class="row stat-cards">
+        <div class="col-md-12 col-xl-12">  
+              <article class="stat-cards-item" style="display: grid;grid-template-columns: 1fr 1fr;">
+                <div style="display: flex;flex-direction: row;align-items: center;">
+                  <div class="stat-cards-icon primary">
+                    <i data-feather="bar-chart-2" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <p class="stat-cards-info__num"><%= roles.length %></p>
+                    <p class="stat-cards-info__title">Total Data</p>
+                  </div>
+                </div>
+  
+                <div class="stat-cards-info" style="display: flex;justify-content: flex-end;">
+                  <div class="button secondary-default-btn">
+                    <a href="<%= base_url('assign/permissions-to-roles/add') %>" title="Add Centers">
+                      <p class="stat-cards-info__progress">
+                        <span class="stat-cards-info__profit success">
+                          <i data-feather="trending-up" aria-hidden="true"></i>
+                        </span>
+                        Add Permissions to Roles
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              </article>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="users-table table-wrapper">
+            <table class="posts-table">
+              <thead>
+                <tr class="users-table-info">
+                  <th>
+                    <label class="users-table__checkbox ms-20">
+                      <input type="checkbox" class="check-all">Role Name
+                    </label>
+                  </th>
+                  <th>Label</th>
+                  <th>Permisions</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (var i=0; i < roles.length; i++) { %>
+                  <tr>
+                    <td class="transform-text">
+                      <label class="users-table__checkbox">
+                        <input type="checkbox" value="<%= roles[i]._id %>" class="check">
+                        <div class="categories-table-img">
+                          <%= roles[i].name %>
+                        </div>
+                      </label>
+                    </td>
+                    <td class="">
+                      <%= roles[i].label %>
+                    </td>
+                    <td class="">
+                        <%= roles[i].permissions.map(c => c.name).join(", ") %>
+                    </td>
+                    <td>
+                      <span class="p-relative">
+                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
+                          <div class="sr-only">More info</div>
+                          <i data-feather="more-horizontal" aria-hidden="true"></i>
+                        </button>
+                        <ul class="users-item-dropdown dropdown">
+                          <% if(gatePermision(permisions, [ROLES_UPDATE])){ %>
+                            <li><a href="<%= base_url('assign/permissions-to-roles') %>/<%= roles[i]._id %>/edit">Edit</a></li>
+                          <% } %>
+                          
+                        </ul>
+                      </span>
+                    </td>
+                  </tr>
+                  <% } %>
+              </tbody>
+            </table>
+          </div>
+  
+          <%- include('../Layout/pagination-links.ejs',  { page_name: 'assign/permissions-to-roles' }) %>
+            
+        </div>
+      </div>
+    </div>
+  </main>

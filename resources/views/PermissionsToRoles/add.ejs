@@ -1,0 +1,83 @@
+<style>
+    .two-column{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 20px;
+    }
+    .two-column>ul h3{
+        margin-bottom: 10px;
+    }
+</style>
+<main>
+    <div class="container">
+      <h2 class="main-title">Assign Permissions To Roles</h2>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="users-table table-wrapper">
+              <ul class="sign-up-form form info-list-parent">
+                <li>
+                  <span class="icon info-icon"></span>
+                </li>
+                <li style="margin-top: 4px;">
+                  <ul class="info-list">
+                    <li>
+                      <h4 class="text-light"> Note: </h4>
+                      <div class="info-list-child">
+                        <h5>Name  </h5>
+                        <p>: should be as same format eg: "sub.admin" .</p>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="users-table table-wrapper">
+            <form class="sign-up-form form" id="addRolesForm" onsubmit="submitForm(event,this, '<%= reset %>')" action="<%= formUrl %>" method="post" enctype="multipart/form-data">
+              
+                <div class="two-column">
+                    <ul>
+                        <h3>Permissions</h3>
+                        
+                        <% for (var i=0; i < permissions.length; i++) { %>
+                        <label class="users-table__checkbox">
+                            <input type="checkbox" class="check" name="permissions[]" value="<%= permissions[i]._id %>" permisionName="<%= permissions[i].name %>">
+                            <div>
+                            <%= permissions[i].name %>
+                            </div>
+                        </label>
+                        <% } %>
+                    </ul>
+
+                    <ul>
+                        <h3>Roles</h3>
+                        <% for (var i=0; i < roles.length; i++) { %>
+                        <label class="users-table__checkbox">
+                            <input type="checkbox" class="check" name="roles[]" value="<%= roles[i]._id %>" <%= (rolePermission.name == roles[i].name) ? 'checked' : '' %>>
+                            <div>
+                            <%= roles[i].name %>
+                            </div>
+                        </label>
+                        <% } %>
+                    </ul>
+                </div>
+        
+              <button type="submit" class="form-btn primary-default-btn transparent-btn">Submit</button>
+              <br><br>
+              <a class="link-info forget-link link-btn" href="<%= base_url('assign/permissions-to-roles') %>"><span class="icon login"></span> All Roles & Permissions</a>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    <% if (Object.keys(rolePermission).length > 0) { %>
+    checkedAllMatchedValues(`<%= rolePermission?.permissions?.map(a => a.name) %>`, "permisionName");
+    <% } %>
+  </script>

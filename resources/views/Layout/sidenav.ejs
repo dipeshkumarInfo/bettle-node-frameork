@@ -1,0 +1,264 @@
+<aside class="sidebar hidden">
+    <div class="sidebar-start">
+       <div class="sidebar-head">
+          <a href="<%= base_url('dashboard') %>" class="logo-wrapper" title="Home">
+             <span class="sr-only">Home</span>
+             <span class="icon logo" aria-hidden="true"></span>
+             <div class="logo-text">
+                <span class="logo-subtitle">Automation</span>
+             </div>
+          </a>
+          <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+          <span class="sr-only">Toggle menu</span>
+          <span class="icon menu-toggle" aria-hidden="true"></span>
+          </button>
+       </div>
+       <div class="sidebar-body">
+          <ul class="sidebar-body-menu">
+             <li>
+                <a title="Dashboard" class="link-page" currentActivePage="/dashboard"
+                   href="<%= base_url('dashboard') %>"><span class="icon home"
+                   aria-hidden="true"></span>Dashboard</a>
+             </li>
+
+             <% if( gatePermision(permisions, [ROLES_VIEW, ROLES_CREATE], 'some' ) ) { %>
+               <li>
+                  <a title="Roles" class="show-cat-btn link-page" currentActivePage="/roles" href="##">
+                  <span class="icon courses" aria-hidden="true"></span>Roles
+                  <span class="category__btn transparent-btn" title="Dropdown">
+                  <span class="sr-only"></span>
+                  <span class="icon arrow-down" aria-hidden="true"></span>
+                  </span>
+                  </a>
+                  <ul class="cat-sub-menu">
+                     <% if( gatePermision(permisions, [ROLES_VIEW] ) ) { %>
+                     <li>
+                        <a title="All Roles" href="<%= base_url('roles') %>" class="sub-menu"><span
+                           class="icon active-icon" aria-hidden="true"></span>List
+                        <span class="category__btn transparent-btn" title="Dropdown">
+                        <span class="sr-only"></span>
+                        </span>
+                        </a>
+                     </li>
+                     <% } %>
+
+                     <% if( gatePermision(permisions, [ROLES_CREATE] ) ) { %>
+                     <li>
+                        <a title="Add Roles" href="<%= base_url('roles/add') %>" class="sub-menu"><span
+                           class="icon add-icon" aria-hidden="true"></span>Add
+                        <span class="category__btn transparent-btn" title="Dropdown">
+                        <span class="sr-only"></span>
+                        </span>
+                        </a>
+                     </li>
+                     <% } %>
+                  </ul>
+               </li>
+               <% } %>
+
+             <% if( gatePermision(permisions, [PERMISSIONS_VIEW, PERMISSIONS_CREATE], 'some' ) ) { %>
+             <li>
+                <a title="Permissions" class="show-cat-btn link-page" currentActivePage="/permissions" href="##">
+                <span class="icon courses" aria-hidden="true"></span>Permissions
+                <span class="category__btn transparent-btn" title="Dropdown">
+                <span class="sr-only"></span>
+                <span class="icon arrow-down" aria-hidden="true"></span>
+                </span>
+                </a>
+                <ul class="cat-sub-menu">
+                  <% if( gatePermision(permisions, [PERMISSIONS_VIEW] ) ) { %>
+                   <li>
+                      <a title="All Permissions" href="<%= base_url('permissions') %>" class="sub-menu"><span
+                         class="icon active-icon" aria-hidden="true"></span>List
+                      <span class="category__btn transparent-btn" title="Dropdown">
+                      <span class="sr-only"></span>
+                      </span>
+                      </a>
+                   </li>
+                   <% } %>
+
+                   <% if( gatePermision(permisions, [PERMISSIONS_CREATE] ) ) { %>
+                   <li>
+                      <a title="Add Permissions" href="<%= base_url('permissions/add') %>" class="sub-menu"><span
+                         class="icon add-icon" aria-hidden="true"></span>Add
+                      <span class="category__btn transparent-btn" title="Dropdown">
+                      <span class="sr-only"></span>
+                      </span>
+                      </a>
+                   </li>
+                   <% } %>
+                </ul>
+             </li>
+             <% } %>
+
+             <% if( gatePermision(permisions, [USERS_VIEW, USERS_CREATE], 'some' ) ) { %>
+               <li>
+                  <a title="Users" class="show-cat-btn link-page" currentActivePage="/users" href="##">
+                  <span class="icon classes" aria-hidden="true"></span>Users
+                  <span class="category__btn transparent-btn" title="Dropdown">
+                  <span class="sr-only"></span>
+                  <span class="icon arrow-down" aria-hidden="true"></span>
+                  </span>
+                  </a>
+                  <ul class="cat-sub-menu">
+                     <% if( gatePermision(permisions, [USERS_VIEW] ) ) { %>
+                     <li>
+                        <a title="All Users" href="<%= base_url('users') %>" class="sub-menu"><span
+                           class="icon active-icon" aria-hidden="true"></span>List
+                        <span class="category__btn transparent-btn" title="Dropdown">
+                        <span class="sr-only"></span>
+                        </span>
+                        </a>
+                     </li>
+                     <% } %>
+
+                     <% if( gatePermision(permisions, [USERS_CREATE] ) ) { %>
+                     <li>
+                        <a title="Add Users" target="_blank" href="<%= base_url('signup') %>" class="sub-menu"><span
+                           class="icon add-icon" aria-hidden="true"></span>Add
+                        <span class="category__btn transparent-btn" title="Dropdown">
+                        <span class="sr-only"></span>
+                        </span>
+                        </a>
+                     </li>
+                     <% } %>
+                  </ul>
+               </li>
+               <% } %>
+
+             <% if( gatePermision(permisions, [PERMISSIONS_TO_ROLES_VIEW, ROLES_TO_USERS_VIEW], 'some' ) ) { %>
+             <li>
+                <a title="Asign Roles to Permisions" class="show-cat-btn link-page" currentActivePage="/assign-roles-permissions" href="##">
+                <span class="icon teachers aria-hidden=" true"></span>Assign
+                <span class="category__btn transparent-btn" title="Dropdown">
+                <span class="sr-only"></span>
+                <span class="icon arrow-down" aria-hidden="true"></span>
+                </span>
+                </a>
+                <ul class="cat-sub-menu">
+
+                  <% if( gatePermision(permisions, [PERMISSIONS_TO_ROLES_VIEW] ) ) { %>
+                   <li>
+                      <a title="Student List" href="<%= base_url('assign/permissions-to-roles') %>" class="sub-menu"><span
+                         class="icon list-icon" aria-hidden="true"></span>Permissions To Roles
+                      <span class="category__btn transparent-btn" title="Dropdown">
+                      <span class="sr-only"></span>
+                      </span>
+                      </a>
+                   </li>
+                   <% } %>
+
+                   <% if( gatePermision(permisions, [ROLES_TO_USERS_VIEW] ) ) { %>
+                   <li>
+                      <a title="Student List" href="<%= base_url('assign/roles-to-user') %>"
+                         class="sub-menu"><span class="icon add-icon" aria-hidden="true"></span>Roles to Users
+                      <span class="category__btn transparent-btn" title="Dropdown">
+                      <span class="sr-only"></span>
+                      </span>
+                      </a>
+                   </li>
+                   <% } %>
+                </ul>
+             </li>
+             <% } %>
+
+          </ul>
+          <span class="system-menu__title">Alerts and Settings</span>
+          <ul class="sidebar-body-menu">
+            <% if( gatePermision(permisions, [NOTIFICATIONS_INDEX, NOTIFICATIONS_SEND, NOTIFICATIONS_RECEIVED], 'some' ) ) { %>
+             <li>
+                <a title="Notifications" class="show-cat-btn link-page" currentActivePage="/" href="##">
+                <span class="icon notification" aria-hidden="true"></span>Notifications
+                <span class="category__btn transparent-btn" title="Dropdown">
+                <span class="sr-only active"></span>
+                <span class="icon arrow-down" aria-hidden="true"></span>
+                </span>
+                </a>
+                <ul class="cat-sub-menu">
+                  <% if( gatePermision(permisions, [NOTIFICATIONS_INDEX] ) ) { %>
+                    <li>
+                        <a title="Notifications List" href="<%= base_url('notifications-list') %>"
+                           class="sub-menu"><span class="icon notification" aria-hidden="true"></span>Notifications
+                        <span class="category__btn transparent-btn" title="Dropdown">
+                        <span class="sr-only"></span>
+                        </span>
+                        </a>
+                     </li>
+                  <% } %>
+
+                  <% if( gatePermision(permisions, [NOTIFICATIONS_SEND]) ) { %>
+                   <li>
+                      <a title="Send Notifications" href="<%= base_url('send-notifications') %>"
+                         class="sub-menu"><span class="icon send" aria-hidden="true"></span>Send
+                      <span class="category__btn transparent-btn" title="Dropdown">
+                      <span class="sr-only"></span>
+                      </span>
+                      </a>
+                   </li>
+                   <% } %>
+                   <!-- <li>
+                      <a title="Received Notifications" href="<%= base_url('received-notifications') %>"
+                         class="sub-menu"><span class="icon received aria-hidden=" true"></span>Received
+                      <span class="category__btn transparent-btn" title="Dropdown">
+                      <span class="sr-only"></span>
+                      </span>
+                      <span class="msg-counter">5</span>
+                      </a>
+                   </li> -->
+                </ul>
+             </li>
+             <% } %>
+
+             <% if( gatePermision(permisions, [SELF_PROFILE_DETAIL_UPDATE]) ) { %>
+             <li>
+                <a href="<%= base_url('profile') %>" class="link-page" currentActivePage="/"><span class="icon setting"
+                   aria-hidden="true"></span>My Profile</a>
+             </li>
+             <% } %>
+          </ul>
+       </div>
+    </div>
+    <div class="sidebar-footer">
+       <a class="sidebar-user">
+          <span class="sidebar-user-img">
+             <picture>
+                <source srcset="<%= base_url('img/avatar/avatar-illustrated-02.webp') %>" type="image/webp">
+                <img
+                   src="<%= base_url('img/avatar/avatar-illustrated-02.png') %>" alt="User name">
+             </picture>
+          </span>
+          <div class="sidebar-user-info">
+             <span userDtl="profile.name" class="sidebar-user__title userInfo capitalize">User Name</span>
+             <span class="sidebar-user__subtitle capitalize">Welcome Back</span>
+          </div>
+       </a>
+    </div>
+ </aside>
+
+ 
+ <script>
+   document.addEventListener('DOMContentLoaded', function () {
+     'use strict';
+     
+     RequestPost("<%= base_url('users/logged-user-detail') %>", null, function(result){
+         const parseResponse = JSON.parse(result).result;
+ 
+         document.querySelectorAll('.userInfo').forEach(e => {
+            const detail = e.getAttribute('userDtl');
+            if (detail) {
+               const propertyPath = detail.split('.');
+               let value = parseResponse;
+               for (const property of propertyPath) {
+                  if (value[property]) {
+                     value = value[property];
+                  } else {
+                     value = undefined;
+                     break;
+                  }
+               }
+               e.innerHTML = value !== undefined ? value : '';
+            }
+         });
+     });
+   });
+ </script>

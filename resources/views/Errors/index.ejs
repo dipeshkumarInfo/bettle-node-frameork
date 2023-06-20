@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="/css/error.css">
+
+<% if (typeof statusCode !== 'undefined' && statusCode !='') { %>
+<% if(statusCode === 404) { %>
+    <%- include('pages/404') %>
+    
+<% } else if(statusCode === 403) { %>
+    <%- include('pages/403') %>
+
+<% } else { %>
+    <%- include('pages/500') %>
+<% }} %>

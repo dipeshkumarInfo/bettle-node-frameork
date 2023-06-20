@@ -1,0 +1,23 @@
+<main class="page-center">
+  <div class="sign-up sign-up-container">
+    <h1 class="sign-up__title">Authenticate</h1>
+  
+    <% if (typeof remainingLimit !== 'undefined' && remainingLimit !='') { %>
+      <div class="alert alert-<%= remainingLimit[0].type %>"><%= remainingLimit[0].msg %></div>
+    <% } %>
+
+    <p class="sign-up__subtitle">Is That You ?, Please Confirm !</p>
+    <form class="sign-up-form form" action="/session-out" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <label class="form-label-wrapper">
+        <input class="form-input" name="_token" type="hidden" value="<%= _token %>" readonly required>
+      </label>
+      <label class="form-label-wrapper">
+        <p class="form-label">PIN</p>
+        <input class="form-input" name="pin" type="number" placeholder="Enter Secret PIN" required>
+      </label>
+      <a class="link-info forget-link" href="##">Forgot your password?</a>
+      <button type="submit" class="form-btn primary-default-btn transparent-btn">Submit</button>
+    </form>
+  </div>
+</main>

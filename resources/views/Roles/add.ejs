@@ -1,0 +1,48 @@
+<main>
+    <div class="container">
+      <h2 class="main-title">Add Roles Centers</h2>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="users-table table-wrapper">
+              <ul class="sign-up-form form info-list-parent">
+                <li>
+                  <span class="icon info-icon"></span>
+                </li>
+                <li style="margin-top: 4px;">
+                  <ul class="info-list">
+                    <li>
+                      <h4 class="text-light"> Note: </h4>
+                      <div class="info-list-child">
+                        <h5>Name  </h5>
+                        <p>: should be as same format eg: "sub.admin" .</p>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="users-table table-wrapper">
+            <form class="sign-up-form form" id="addRolesForm" onsubmit="submitForm(event,this, '<%= reset %>')" action="<%= formUrl %>" method="post" enctype="multipart/form-data">
+              <label class="form-label-wrapper">
+                <p class="form-label">Name</p>
+                <input class="form-input" name="name" type="text" value="<%= role.name || '' %>" placeholder="Name" >
+              </label>
+              <label class="form-label-wrapper">
+                <p class="form-label">Label</p>
+                <input class="form-input" name="label" type="text" value="<%= role.label || '' %>" placeholder="Label" >
+              </label>
+        
+              <button type="submit" class="form-btn primary-default-btn transparent-btn">Submit</button>
+              <br><br>
+              <a class="link-info forget-link link-btn" href="<%= base_url('roles') %>"><span class="icon login"></span> All Roles</a>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>

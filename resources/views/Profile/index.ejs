@@ -1,0 +1,60 @@
+<main>
+    <div class="container">
+      <h2 class="main-title">My Profile</h2>
+
+      <div class="row">
+    
+        <div class="col-lg-4">
+            <div class="users-table table-wrapper">
+                <ul class="sign-up-form form info-list-parent">
+                    <li>
+                        <% if(gatePermision(permisions, [USERS_UPDATE])){ %>
+                            <% if(user._id){ %>
+                                <a class="link-btn" target="_blank" href="<%= base_url('signup') %>/<%= user._id %>/edit?uid=<%= myId %>"><span class="icon login"></span> Update Current Profile Detail</a>
+                            <% } %>
+                        <% } %>
+                    </li>
+
+                    <li>
+                        <% if(gatePermision(permisions, [SELF_PROFILE_DETAIL_UPDATE])){ %>
+                            <a class="link-btn" target="_blank" href="<%= base_url('signup') %>/<%= myId %>/edit?uid=<%= myId %>"><span class="icon login"></span> Update My Detail</a>
+                        <% } %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12">
+                  <article class="white-block">
+                    <div class="top-cat-title">
+                      <h3>User Info</h3>
+                    </div>
+                    <ul class="top-cat-list">
+                      <li>
+                        <div class="top-cat-list__title">
+                           Email: <%= user.profile.email %> <span>Name: <%= user.profile.name %></span>
+                        </div>
+                        <div class="top-cat-list__subtitle mt-2">
+                            Roles : <%= user.roles.map(c => c.name).join(", ") %> <span class="purple">Count: +<%= user.roles.length %></span>
+                        </div>
+                      </li>
+
+                      <li class="mt-2">
+                        <div class="top-cat-list__title">
+                            Mobile Number: <%= user.profile.mobile_number %> <span>Status: <%= user.status == 1 ? 'Active' : 'InActive' %></span>
+                        </div>
+                        <div class="top-cat-list__subtitle mt-2">
+                            Permisions: <%= user.roles.map(c => c.permissions.map(p => p.name).join("\n")) %> <span class="purple">Count: +<%= user.roles.map(c => c.permissions.length) %></span>
+                        </div>
+                      </li>
+                    </ul>
+                  </article>
+                </div>
+              </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
